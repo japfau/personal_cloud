@@ -1,13 +1,13 @@
-name: Auto approve
-
-on:
-  pull_request_target
-
+name: Automatic pull request review
+on: [pull_request]
 jobs:
-  auto-approve:
+  automate-pullrequest-review:
     runs-on: ubuntu-latest
     steps:
-    - uses: hmarr/auto-approve-action@v2
-      if: github.actor == 'japfau' && github.event.label.name == 'test'
-      with:
-        github-token: "${{ secrets.TOKEN }}"
+      - name: Approve pull request
+        if: github.actor == 'japfau'
+        uses: andrewmusgrave/automatic-pull-request-review@0.0.5
+        with:
+          repo-token: "${{ secrets.TOKEN }}"
+          event: APPROVE
+          body: ':robot: Approved for automatic deployment :+1:'
