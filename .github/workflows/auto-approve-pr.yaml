@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: hmarr/auto-approve-action@v2
-      if: github.actor == 'japfau'
+      if: github.actor == 'japfau' && github.event.label.name == 'test'
       with:
         github-token: "${{ secrets.TOKEN }}"
